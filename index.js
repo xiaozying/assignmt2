@@ -8,7 +8,7 @@ const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
    ssl: {
-    rejectUnauthorized: false
+     rejectUnauthorized: false
    }  //connect the process database
   //connectionString: process.env.DATABASE_URL || "postgres://postgres:1234@localhost/cmpt276"
 
@@ -47,14 +47,11 @@ app.post('/add',async(req,res) =>{
 
 app.post('/deltid',async(req,res) =>{
   var id = req.body.id;
-  pool.query(` delete from rectangles where id = '${id}'`,async(error,results)=>
-  {
-    res.render('pages/deltid', results );
-  })
+  pool.query(` delete from rectangles where id = '${id}'`,async(error,results)=>{res.render('pages/deltid', results );})
 })
 
-app.post('/upid',async(req,res) =>{
-  var id = req.body.id;
+app.post('/upid/:id',async(req,res) =>{
+  var id = req.params.id;
   var name = req.body.name;
   pool.query(`update rectangles set name = '${name}' where id = '${id}'`,async(error,result)=>
   {
@@ -62,19 +59,29 @@ app.post('/upid',async(req,res) =>{
   })
 })
 
-app.post('/upid',async(req,res) =>{
-  var id = req.body.id;
-  var name = req.body.name;
-  pool.query(`update rectangles set name = '${name}' where id = '${id}'`,async(error,result)=>
-  {
-    res.render('pages/upid', result);
-  })
-})
 
-app.post('/upcolor',async(req,res) =>{
-  var id = req.body.id;
+app.post('/upcolor/:id',async(req,res) =>{
+  var id = req.params.id;
   var color = req.body.color;
   pool.query(`update rectangles set color = '${color}' where id = '${id}'`,async(error,result)=>
+  {
+    res.render('pages/upcolor', result);
+  })
+})
+
+app.post('/upheight/:id',async(req,res) =>{
+  var id = req.params.id;
+  var height = req.body.height;
+  pool.query(`update rectangles set color = '${height}' where id = '${id}'`,async(error,result)=>
+  {
+    res.render('pages/upcolor', result);
+  })
+})
+
+app.post('/upwidth/:id',async(req,res) =>{
+  var id = req.params.id;
+  var width = req.body.width;
+  pool.query(`update rectangles set color = '${width}' where id = '${id}'`,async(error,result)=>
   {
     res.render('pages/upcolor', result);
   })
