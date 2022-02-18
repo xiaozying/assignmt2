@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <h4 style='text-align: center;'>detail information</h4>
+  <%- include ("../partials/header.ejs") %>
+</head>
+<link rel="stylesheet" href="public/stylesheets/cd.css"/>
+<body style='background-color:rgb(237, 248, 248)'>
+
+<div class="container">
+<h4>Rectangles</h4>
+
+<table class = "table" border = '1'>  
+    <th></th> <th>name</th> <th>color</th> <th>width</th> <th>height</th> 
+    <% results.forEach(function(r) { %> 
+        <form action="/detail" method="get"></form>
+          <tr>
+            <td> <%= r.id %> </td>
+            <td> <%= r.name %> </td>
+            <td style='background-color:<%= r.color %>'> <%= r.color %> </td>
+            <td> <%= r.width %> </td>
+            <td> <%= r.height %> </td>
+          </tr>
+    <% }); %>
+</table>
+<form action="/db" method="get">
+        <input type="submit" name = "back"/>
+    </form>
+</div>
+
+</body>
+</html>

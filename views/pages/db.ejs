@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="public/stylesheets/.css"/>
+<head>
+  <%- include ("../partials/header.ejs") %>
+</head>
+
+<body style='background-color:rgb(237, 248, 248)'>
+
+<div class="container">
+<h4>Rectangles</h4>
+
+<table class = "table" border = '1'>  
+    <th></th> <th>name</th> <th>color</th> 
+    <% results.forEach(function(r) { %> 
+        <form action="/detail" method="get"></form>
+          <tr>
+            <td class ="mmm"> <%= r.id %> </td>
+            <td> <a href="/name/<%= r.id %>" method = "get"> <%= r.name %> </a></td>
+            <td style='background-color:<%= r.color %>'> <%= r.color %> </td>
+          </tr>
+    <% }); %>
+</table>
+
+<h4 class = "back">add rectangles</h4>
+    <form action="/add" method="post">
+        <label for="name">name</label>
+       <input type="text" name="name" /> 
+        <label for="width">width</label>
+        <input type="text" name="width" />
+        <label for="height">height</label>
+        <input type="text" name="height" />
+        <label for="color">color</label>
+        <input type="text" name="color" />
+        <input  type="submit" name="submit" />
+    </form>
+
+<h4>delete rectangles</h4>
+    <form action="/deltid" method="post">
+        <label for="id">id</label>
+        <input type="text" name="id" />
+        <input  type="submit" name="submit" />
+    </form>
+
+<h4>update name rectangles</h4>
+    <form action="/upid" method="post">
+        <label for="id">id</label>
+        <input type="text" name="id" />
+        <label for="name">name</label>
+       <input type="text" name="name" /> 
+        <input  type="submit" name="submit" />
+    </form>
+
+<h4>update color rectangles</h4>
+    <form action="/upcolor" method="post">
+        <label for="id">id</label>
+        <input type="text" name="id" />
+        <label for="color">color</label>
+       <input type="text" name="color" /> 
+        <input  type="submit" name="submit" />
+    </form>
+</div>
+    
+</body>
+</html>
